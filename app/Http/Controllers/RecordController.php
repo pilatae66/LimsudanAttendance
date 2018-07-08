@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Record;
+use App\User;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Http\Resources\RecordResource;
 use App\Http\Resources\RecordCollection;
@@ -10,7 +12,7 @@ use App\Http\Resources\RecordCollection;
 class RecordController extends Controller
 {
     public function __construct(){
-        $this->middleware('auth');
+        // $this->middleware('auth')->except('attendView', 'attend');
     }
     /**
      * Display a listing of the resource.
@@ -93,5 +95,18 @@ class RecordController extends Controller
     public function attendView()
     {
         return view('attendance.attend');
+    }
+
+    public function attend(Request $request)
+    {
+        $employee = User::where('id', $request->id)->where('usertype', 'Teacher')->first();
+        $status = "Valid ".$request->type;
+        $trans = 'Test';
+
+        // return $photo;
+        // return $employee;
+
+
+        return view('attendance.attend', compact('employee', 'status', 'trans', 'photo'));
     }
 }

@@ -52,11 +52,14 @@ class UserController extends Controller
         $teacher->mname = $request->mname;
         $teacher->lname = $request->lname;
         $teacher->usertype = 'Teacher';
+       
         if($request->hasFile('photo')){
             $filename = $request->photo->getClientOriginalName();
             $filesize = $request->photo->getClientSize();
             $request->photo->storeAs('public/upload', $filename);
             $teacher->fileName = $filename;
+        }else{
+            session()->flash('error','Teacher created unsuccessfully!');
         }
 
         $teacher->save();

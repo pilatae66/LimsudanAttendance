@@ -28,3 +28,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/admin', 'UserController@adminIndex')->name('admin.index');
 
 Route::get('/attendance', 'RecordController@attendView')->name('attend.view');
+
+Route::post('/attend', 'RecordController@attend')->name('employee.attend');

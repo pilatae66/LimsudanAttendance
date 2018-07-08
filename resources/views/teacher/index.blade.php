@@ -45,7 +45,7 @@
                                 @php $count++; @endphp
                                 <td>{{ $count }}</td>
                                 <td>{{ $teacher->id }}</td>
-                                <td>{{ $teacher->fulName }}</td>
+                                <td>{{ $teacher->fullName }}</td>
                                 <td>{{ $teacher->usertype }}</td>
                                 <td>{{ $teacher->time }}</td>
                                 <td class="text-right">

@@ -37,10 +37,6 @@ class User extends Authenticatable
         return $this->hasMany(History::class);
     }
 
-    public function getFulNameAttribute(){
-        return $this->fname . " " . $this->mname[0] . ". " . $this->lname;
-    }
-
     public function getFullNameAttribute(){
         return $this->fname . " " . $this->mname . " " . $this->lname;
     }
