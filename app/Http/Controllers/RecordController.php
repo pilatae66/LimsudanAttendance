@@ -21,7 +21,7 @@ class RecordController extends Controller
      */
     public function index()
     {
-        $records = Record::paginate(10);
+        $records = Record::all();
 
         return view('record.index', ['records' => $records]);
     }    

@@ -39,7 +39,7 @@
                                 @php $count++; @endphp
                                 <td>{{ $count }}</td>
                                 <td>{{ $admin->id }}</td>
-                                <td>{{ $admin->fulName }}</td>
+                                <td>{{ $admin->fullName }}</td>
                                 <td>{{ $admin->usertype }}</td>
                                 <td>{{ $admin->time }}</td>
                             </tr>

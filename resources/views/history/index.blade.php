@@ -36,7 +36,7 @@
                         <td>{{ $count }}</td>
                         <td>{{ $history->fullName }}</td>
                         <td>{{ $history->incident }}</td>
-                        <td>{{ $history->time }}</td
+                        <td>{{ $history->created_at->diffForHumans() }}</td
                     </tr>
                     @empty
                     <tr>

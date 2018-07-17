@@ -109,6 +109,12 @@
                             </ul>
                         </div>
                     </li>
+                    <li class="{{ Request::path() == 'record' ? 'active' : '' }}">
+                        <a href="{{ route('records.index') }}">
+                            <i class="material-icons">table</i>
+                            <p> Record </p>
+                        </a>
+                    </li>
                     <li class="{{ Request::path() == 'history' ? 'active' : '' }}">
                         <a href="{{ route('history.index') }}">
                             <i class="material-icons">history</i>
@@ -209,6 +215,7 @@
                 [10, 25, 50, "All"]
             ],
             responsive: true,
+            "order": [],
             language: {
                 search: "_INPUT_",
                 searchPlaceholder: "Search records",
