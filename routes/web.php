@@ -30,3 +30,5 @@ Route::get('/admin', 'UserController@adminIndex')->name('admin.index');
 Route::get('/attendance', 'RecordController@attendView')->name('attend.view');
 
 Route::post('/attend', 'RecordController@attend')->name('employee.attend');
+
+Route::get('teacher/{id}/getMonthDTR', 'UserController@getMonthDTR')->name('user.getMonthDTR');

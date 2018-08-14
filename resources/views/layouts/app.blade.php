@@ -11,8 +11,10 @@
     <meta name="viewport" content="width=device-width" />
     <!-- Bootstrap core CSS     -->
     <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" />
+    <link href="{{asset('css/daterangepicker.css')}}" rel="stylesheet" />
     <!--  Material Dashboard CSS    -->
     <link href="{{asset('css/material-dashboard.css?v=1.2.1')}}" rel="stylesheet" />
+    <link href="{{asset('css/style.css')}}" rel="stylesheet" />
     <!--     Fonts and icons     -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons"
@@ -202,6 +204,7 @@
 <script src="{{asset('js/fullcalendar.min.js')}}"></script>
 <!-- Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
 <script src="{{asset('js/jquery.tagsinput.js')}}"></script>
+<script src="{{asset('js/daterangepicker.js')}}"></script>
 <!-- Material Dashboard javascript methods -->
 <script src="{{asset('js/material-dashboard.js?v=1.2.1')}}"></script>
 <script src="{{asset('js/demo.js')}}"></script>
@@ -225,7 +228,13 @@
 
         var table = $('#datatables').DataTable();
 
+        $('#datatables tr[data-route]').click(function(){
+           window.location.href = $(this).data('route')
+        })
+
         $('.card .material-datatables label').addClass('form-group');
+
+        $('.daterange').daterangepicker()
     });
 </script>
 

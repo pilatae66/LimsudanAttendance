@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\Storage;
+use App\Record;
 
 class UserController extends Controller
 {
@@ -77,9 +79,10 @@ class UserController extends Controller
      */
     public function show($id)
     {
+        $records = [];
         $teacher = User::find($id);
-
-        return view('teacher.show', ['teacher' => $teacher]);
+        // return Storage::url($teacher->fileName);
+        return view('teacher.show', compact('teacher', 'records'));
     }
 
     /**
@@ -135,5 +138,16 @@ class UserController extends Controller
         session()->flash('success','Teacher deleted successfully!');
 
         return redirect('teachers');
+    }
+
+    public function getMonthDTR(Request $request, $id)
+    {
+        $teacher = User::find($id);
+        $records = Record::whereMonth('created_at', $request->month)->where('user_id', $id)->get();
+        $month = $request->month;
+
+        // return $records;
+
+        return view('teacher.show', compact('records', 'teacher', 'month'));
     }
 }
