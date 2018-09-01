@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Record;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Http\Resources\RecordResource;
@@ -44,7 +45,19 @@ class RecordController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // return $request;
+        $record = new Record;
+
+        $record->user_id = $request->user_id;
+        $record->type = $request->type;
+        $record->status = 'Valid';
+        $time = Carbon::parse($request->time);
+        $record->created_at = Carbon::create(2018,$request->month,$request->date,$time->hour,$time->minute,0);
+
+        // return $record->created_at;
+        $record->save();
+
+        return response()->json(['success' => 'success', 200]);
     }
 
     /**
@@ -99,9 +112,22 @@ class RecordController extends Controller
 
     public function attend(Request $request)
     {
+        if(User::where('id', $request->id)->where('usertype', 'Teacher')->count() <= 0){
+            alert()->error('Invald ID Number','!')->toToast('top');
+            return view('attendance.attend');
+        }
+
+        $record = new Record;
+        $record->user_id = $request->id;
+        $record->status = 'Valid';
+        $record->type = $request->type;
+
+        $record->save();
+
+        
         $employee = User::where('id', $request->id)->where('usertype', 'Teacher')->first();
         $status = "Valid ".$request->type;
-        $trans = 'Test';
+        $trans = $record->created_at;
 
         // return $photo;
         // return $employee;

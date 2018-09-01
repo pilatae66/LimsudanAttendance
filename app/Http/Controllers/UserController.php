@@ -80,9 +80,10 @@ class UserController extends Controller
     public function show($id)
     {
         $records = [];
+        $month = 0;
         $teacher = User::find($id);
         // return Storage::url($teacher->fileName);
-        return view('teacher.show', compact('teacher', 'records'));
+        return view('teacher.show', compact('teacher', 'records', 'month'));
     }
 
     /**
